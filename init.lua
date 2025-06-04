@@ -1,12 +1,12 @@
--- luacheck: globals hs
+-- fork of https://github.com/dtinth/FocusHighlight.spoon
+-- luacheck: globals 
+
 local obj = {}
 
 -- Metadata
 obj.name = "FocusHighlight"
 obj.version = "0.1"
-obj.author = "Thai Pangsakulyanont <dtinth@spacet.me>"
-obj.homepage = "https://github.com/dtinth/FocusHighlight.spoon"
-obj.license = "MIT - https://opensource.org/licenses/MIT"
+obj.author = "Troels Lund <trolund@gmail.com>"
 
 --- FocusHighlight.windowFilter
 --- Variable
@@ -16,17 +16,17 @@ obj.windowFilter = hs.window.filter.default
 --- FocusHighlight.color
 --- Variable
 --- Controls the color in Hex format
-obj.color = "#ffffff"
+obj.color = "#fff"
 
 --- FocusHighlight.arrowSize
 --- Variable
 --- Controls the arrow size
-obj.arrowSize = 256
+obj.arrowSize = 200
 
 --- FocusHighlight.arrowFadeOutDuration
 --- Variable
 --- Controls the duration in seconds to fade out the arrow
-obj.arrowFadeOutDuration = 1
+obj.arrowFadeOutDuration = 0.5
 
 --- FocusHighlight.highlightFadeOutDuration
 --- Variable
@@ -85,15 +85,15 @@ function obj:start()
     -- Draw a focus highlight
     hs.canvas.new(window:frame()):appendElements(
       {
-        action = "fill", padding = 4, type = "rectangle",
+        action = "fill", padding = 0, type = "rectangle",
         fillColor = { alpha = self.highlightFillAlpha, hex = color },
       },
       {
-        action = "stroke", padding = 4, type = "rectangle",
+        action = "stroke", padding = 2, type = "rectangle",
         strokeColor = { hex = color },
-        strokeWidth = 8,
+        strokeWidth = 2,
         strokeJoinStyle = "round",
-        withShadow = true,
+        withShadow = true
       }
     ):show():delete(self.highlightFadeOutDuration)
   end)
